@@ -65,7 +65,6 @@
     <Compile Include="Configuration\ScriptSection.cs" />
     <Compile Include="Events\ApplicationEventsHandler.cs" />
     <Compile Include="Extensions\Common.cs" />
-    <Compile Include="Extensions\ResourceExtensions.cs" />
     <Compile Include="Modules\RegisterClientResources.cs" />
     <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

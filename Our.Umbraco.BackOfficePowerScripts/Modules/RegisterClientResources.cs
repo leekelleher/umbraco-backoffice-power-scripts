@@ -6,6 +6,7 @@ using System.Web.Hosting;
 using System.Web.UI;
 
 using ClientDependency.Core;
+using ClientDependency.Core.Controls;
 using Our.Umbraco.BackOfficePowerScripts.Configuration;
 using Our.Umbraco.BackOfficePowerScripts.Extensions;
 using umbraco;
@@ -42,10 +43,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 					{
 						page.Load += (s2, e2) =>
 						{
-							// TODO: Load in the Scripts at appStart - so we don't reload the web.config for each page refresh! [LK]
-							var config = WebConfigurationManager.OpenWebConfiguration("~/");
-							var scripts = (config.GetSection(Common.ConfigName) as ScriptSection).Scripts;
-
+							var scripts = Common.RegisteredScripts;
 							if (scripts != null && scripts.Count > 0)
 							{
 								for (int i = 0; i < scripts.Count; i++)
@@ -54,7 +52,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 									var type = string.Equals(script.Type, "CSS", StringComparison.InvariantCultureIgnoreCase) ? ClientDependencyType.Css : ClientDependencyType.Javascript;
 
 									// add the script to client dependency
-									page.AddResourceToClientDependency(script.Path, type, script.Priority);
+									ClientDependencyLoader.Instance.RegisterDependency(script.Priority, script.Path, type);
 								}
 							}
 						};

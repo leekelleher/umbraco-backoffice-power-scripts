@@ -20,6 +20,13 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 	{
 		public ApplicationEventsHandler()
 		{
+			this.LoadRegisteredScripts();
+		}
+
+		private void LoadRegisteredScripts()
+		{
+			var config = WebConfigurationManager.OpenWebConfiguration("~/");
+			Common.RegisteredScripts = (config.GetSection(Common.ConfigName) as ScriptSection).Scripts;
 		}
 
 		private static bool modulesRegistered;

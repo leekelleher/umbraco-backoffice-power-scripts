@@ -48,10 +48,11 @@ namespace Our.Umbraco.BackOfficePowerScripts.PackageActions
 				{
 					webConfig.Sections.Add(Common.ConfigName, new ScriptSection());
 
-					string configPath = IOHelper.MapPath(string.Concat("~/config/", Common.ConfigName, ".config"));
+					string configPath = string.Concat("config", Path.DirectorySeparatorChar, Common.ConfigName, ".config");
+					string xmlPath = IOHelper.MapPath(string.Concat("~/", configPath));
 					string xml;
 
-					using (var reader = new StreamReader(configPath))
+					using (var reader = new StreamReader(xmlPath))
 					{
 						xml = reader.ReadToEnd();
 					}

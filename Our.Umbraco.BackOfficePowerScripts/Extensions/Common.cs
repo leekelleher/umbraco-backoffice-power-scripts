@@ -1,7 +1,6 @@
 ﻿using System;
-using System.IO;
 
-using umbraco.IO;
+using Our.Umbraco.BackOfficePowerScripts.Configuration;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Extensions
 {
@@ -14,5 +13,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Extensions
 				return "BackOfficePowerScripts";
 			}
 		}
+
+		public static ScriptCollection RegisteredScripts { get; set; }
 	}
 }
