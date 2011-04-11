@@ -4,7 +4,7 @@
 	<info>
 		<package>
 			<name>BackOffice Power Scripts</name>
-			<version>2.0</version>
+			<version>1.0</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
 			<url>http://our.umbraco.org/projects/backoffice-extensions/backoffice-power-scripts</url>
 			<requirements>
@@ -26,5 +26,7 @@
 	<DictionaryItems />
 	<Languages />
 	<DataTypes />
-	<Actions />
+	<Actions>
+		<Action runat="install" undo="true" alias="BackOfficePowerScripts_AddConfigSection" />
+	</Actions>
 </umbPackage>

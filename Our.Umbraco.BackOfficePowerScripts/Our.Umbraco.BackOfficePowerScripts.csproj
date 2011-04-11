@@ -39,6 +39,9 @@
     <Reference Include="ClientDependency.Core">
       <HintPath>..\_externals\ClientDependency.Core.dll</HintPath>
     </Reference>
+    <Reference Include="cms, Version=1.0.4089.21636, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\_externals\cms.dll</HintPath>
+    </Reference>
     <Reference Include="interfaces">
       <HintPath>..\_externals\interfaces.dll</HintPath>
     </Reference>
@@ -46,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,24 +67,16 @@
     <Compile Include="Extensions\Common.cs" />
     <Compile Include="Extensions\ResourceExtensions.cs" />
     <Compile Include="Modules\RegisterClientResources.cs" />
+    <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web\umbraco\plugins\BackOfficeScripts\install.ascx.cs">
-      <DependentUpon>install.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Web\umbraco\plugins\BackOfficeScripts\install.ascx.designer.cs">
-      <DependentUpon>install.ascx.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PackageActions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Web\config\BackOfficePowerScripts.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web\umbraco\plugins\BackOfficeScripts\install.ascx" />
-    <Content Include="Web\umbraco\plugins\BackOfficeScripts\scripts\btn-our-umbraco.js" />
-    <Content Include="Web\umbraco\plugins\BackOfficeScripts\scripts\sections-href-fix.js" />
+    <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\btn-our-umbraco.js" />
+    <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\sections-href-fix.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

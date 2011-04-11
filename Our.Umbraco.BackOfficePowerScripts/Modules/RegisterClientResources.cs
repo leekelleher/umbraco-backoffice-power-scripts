@@ -42,6 +42,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 					{
 						page.Load += (s2, e2) =>
 						{
+							// TODO: Load in the Scripts at appStart - so we don't reload the web.config for each page refresh! [LK]
 							var config = WebConfigurationManager.OpenWebConfiguration("~/");
 							var scripts = (config.GetSection(Common.ConfigName) as ScriptSection).Scripts;
 
