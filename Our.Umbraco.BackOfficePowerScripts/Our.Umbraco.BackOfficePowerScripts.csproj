@@ -64,10 +64,10 @@
     <Compile Include="Extensions\ResourceExtensions.cs" />
     <Compile Include="Modules\RegisterClientResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\umbraco\plugins\BackOfficeScripts\install.ascx.cs">
+    <Compile Include="Web\umbraco\plugins\BackOfficeScripts\install.ascx.cs">
       <DependentUpon>install.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\umbraco\plugins\BackOfficeScripts\install.ascx.designer.cs">
+    <Compile Include="Web\umbraco\plugins\BackOfficeScripts\install.ascx.designer.cs">
       <DependentUpon>install.ascx.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -75,12 +75,12 @@
     <Folder Include="PackageActions\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\config\BackOfficePowerScripts.config" />
+    <None Include="Web\config\BackOfficePowerScripts.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\umbraco\plugins\BackOfficeScripts\install.ascx" />
-    <Content Include="Resources\umbraco\plugins\BackOfficeScripts\scripts\btn-our-umbraco.js" />
-    <Content Include="Resources\umbraco\plugins\BackOfficeScripts\scripts\sections-href-fix.js" />
+    <Content Include="Web\umbraco\plugins\BackOfficeScripts\install.ascx" />
+    <Content Include="Web\umbraco\plugins\BackOfficeScripts\scripts\btn-our-umbraco.js" />
+    <Content Include="Web\umbraco\plugins\BackOfficeScripts\scripts\sections-href-fix.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
