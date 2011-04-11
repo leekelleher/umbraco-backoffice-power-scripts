@@ -20,7 +20,6 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 	{
 		public ApplicationEventsHandler()
 		{
-			this.CheckWebConfigSectionExists();
 		}
 
 		private static bool modulesRegistered;
@@ -35,49 +34,6 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 			modulesRegistered = true;
 
 			DynamicModuleUtility.RegisterModule(typeof(RegisterClientResources));
-		}
-
-		public void CheckWebConfigSectionExists()
-		{
-			try
-			{
-				var webConfig = WebConfigurationManager.OpenWebConfiguration("~/");
-				if (webConfig.Sections[Common.ConfigName] == null)
-				{
-					webConfig.Sections.Add(Common.ConfigName, new ScriptSection());
-
-					string configPath = string.Concat("config", Path.DirectorySeparatorChar, Common.ConfigName, ".config");
-					string xml;
-
-					using (var resource = this.GetType().Assembly.GetManifestResourceStream(Common.ResourceName))
-					using (var reader = new StreamReader(resource))
-					{
-						xml = reader.ReadToEnd();
-					}
-
-					webConfig.Sections[Common.ConfigName].SectionInformation.SetRawXml(xml);
-					webConfig.Sections[Common.ConfigName].SectionInformation.ConfigSource = configPath;
-
-					webConfig.Save(ConfigurationSaveMode.Modified);
-
-					// copy the example script
-					this.CopyExampleScripts();
-				}
-			}
-			catch (Exception ex)
-			{
-				Log.Add(LogTypes.Error, -1, ex.ToString());
-			}
-		}
-
-		private void CopyExampleScripts()
-		{
-			var scripts = new string[] { "btn-our-umbraco.js", "sections-href-fix.js" };
-			foreach (var script in scripts)
-			{
-				var resourceName = string.Concat("Our.Umbraco.BackOfficePowerScripts.Resources.Scripts.", script);
-				Common.CopyResourceToFile(this.GetType(), resourceName, Common.GetScriptPath(script));
-			}
 		}
 	}
 }

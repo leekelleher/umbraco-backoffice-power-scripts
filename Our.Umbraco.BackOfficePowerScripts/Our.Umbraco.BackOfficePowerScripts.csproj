@@ -64,15 +64,23 @@
     <Compile Include="Extensions\ResourceExtensions.cs" />
     <Compile Include="Modules\RegisterClientResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\umbraco\plugins\BackOfficeScripts\install.ascx.cs">
+      <DependentUpon>install.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\umbraco\plugins\BackOfficeScripts\install.ascx.designer.cs">
+      <DependentUpon>install.ascx.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Scripts\btn-our-umbraco.js" />
+    <Folder Include="PackageActions\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Config\BackOfficePowerScripts.config" />
+    <None Include="Resources\config\BackOfficePowerScripts.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Scripts\sections-href-fix.js" />
+    <Content Include="Resources\umbraco\plugins\BackOfficeScripts\install.ascx" />
+    <Content Include="Resources\umbraco\plugins\BackOfficeScripts\scripts\btn-our-umbraco.js" />
+    <Content Include="Resources\umbraco\plugins\BackOfficeScripts\scripts\sections-href-fix.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
