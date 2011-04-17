@@ -60,12 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ConfigSection.cs" />
     <Compile Include="Configuration\Scripts\ScriptsCollection.cs" />
     <Compile Include="Configuration\Scripts\ScriptsElement.cs" />
-    <Compile Include="Configuration\Scripts\ScriptsSection.cs" />
     <Compile Include="Configuration\Styles\StylesCollection.cs" />
     <Compile Include="Configuration\Styles\StylesElement.cs" />
-    <Compile Include="Configuration\Styles\StylesSection.cs" />
     <Compile Include="Events\ApplicationEventsHandler.cs" />
     <Compile Include="Extensions\Common.cs" />
     <Compile Include="Filters\AppendScripts.cs" />

@@ -7,8 +7,7 @@ using System.Web.Configuration;
 using System.Web.Hosting;
 
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-using Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts;
-using Our.Umbraco.BackOfficePowerScripts.Configuration.Styles;
+using Our.Umbraco.BackOfficePowerScripts.Configuration;
 using Our.Umbraco.BackOfficePowerScripts.Extensions;
 using Our.Umbraco.BackOfficePowerScripts.Modules;
 using umbraco.BusinessLogic;
@@ -41,7 +40,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 		private void LoadRegisteredScripts()
 		{
 			var config = WebConfigurationManager.OpenWebConfiguration("~/");
-			var section = config.GetSection(Common.ConfigName) as ScriptsSection;
+			var section = config.GetSection(Common.ConfigName) as ConfigSection;
 			Common.RegisteredScripts = section.Scripts;
 			Common.RegisteredStyles = section.Styles;
 		}

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Xml;
 
-using Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts;
+using Our.Umbraco.BackOfficePowerScripts.Configuration;
 using Our.Umbraco.BackOfficePowerScripts.Extensions;
 using umbraco.BasePages;
 using umbraco.BusinessLogic;
@@ -46,7 +46,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.PackageActions
 				var webConfig = WebConfigurationManager.OpenWebConfiguration("~/");
 				if (webConfig.Sections[Common.ConfigName] == null)
 				{
-					webConfig.Sections.Add(Common.ConfigName, new ScriptsSection());
+					webConfig.Sections.Add(Common.ConfigName, new ConfigSection());
 
 					string configPath = string.Concat("config", Path.DirectorySeparatorChar, Common.ConfigName, ".config");
 					string xmlPath = IOHelper.MapPath(string.Concat("~/", configPath));
