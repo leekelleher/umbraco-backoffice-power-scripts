@@ -3,20 +3,20 @@ using System.Configuration;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 {
-	[ConfigurationCollection(typeof(StylesElement), CollectionType = ConfigurationElementCollectionType.BasicMap)]
-	public class StylesCollection : ConfigurationElementCollection
+	[ConfigurationCollection(typeof(StyleElement), CollectionType = ConfigurationElementCollectionType.BasicMap)]
+	public class StyleCollection : ConfigurationElementCollection
 	{
 		protected override ConfigurationElement CreateNewElement()
 		{
-			return new StylesElement();
+			return new StyleElement();
 		}
 
 		protected override object GetElementKey(ConfigurationElement element)
 		{
-			return (element as StylesElement).Path;
+			return (element as StyleElement).Path;
 		}
 
-		public void Add(StylesElement element)
+		public void Add(StyleElement element)
 		{
 			this.BaseAdd(element);
 		}
@@ -26,12 +26,12 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 			this.BaseClear();
 		}
 
-		public int IndexOf(StylesElement element)
+		public int IndexOf(StyleElement element)
 		{
 			return this.BaseIndexOf(element);
 		}
 
-		public void Remove(StylesElement element)
+		public void Remove(StyleElement element)
 		{
 			if (this.BaseIndexOf(element) >= 0)
 			{
@@ -44,11 +44,11 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 			this.BaseRemoveAt(index);
 		}
 
-		public StylesElement this[int index]
+		public StyleElement this[int index]
 		{
 			get
 			{
-				return (StylesElement)this.BaseGet(index);
+				return (StyleElement)this.BaseGet(index);
 			}
 			set
 			{

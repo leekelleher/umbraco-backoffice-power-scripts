@@ -3,12 +3,12 @@ using System.Configuration;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
 {
-	public class ScriptsElement : ConfigurationElement
+	public class ScriptElement : ConfigurationElement
 	{
 		private static ConfigurationPropertyCollection properties;
 		private static ConfigurationProperty path;
 
-		static ScriptsElement()
+		static ScriptElement()
 		{
 			path = new ConfigurationProperty("path", typeof(string), null, ConfigurationPropertyOptions.IsRequired);
 

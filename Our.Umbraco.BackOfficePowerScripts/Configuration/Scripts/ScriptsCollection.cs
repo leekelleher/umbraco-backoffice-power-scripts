@@ -3,20 +3,20 @@ using System.Configuration;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
 {
-	[ConfigurationCollection(typeof(ScriptsElement), CollectionType = ConfigurationElementCollectionType.BasicMap)]
-	public class ScriptsCollection : ConfigurationElementCollection
+	[ConfigurationCollection(typeof(ScriptElement), CollectionType = ConfigurationElementCollectionType.BasicMap)]
+	public class ScriptCollection : ConfigurationElementCollection
 	{
 		protected override ConfigurationElement CreateNewElement()
 		{
-			return new ScriptsElement();
+			return new ScriptElement();
 		}
 
 		protected override object GetElementKey(ConfigurationElement element)
 		{
-			return (element as ScriptsElement).Path;
+			return (element as ScriptElement).Path;
 		}
 
-		public void Add(ScriptsElement element)
+		public void Add(ScriptElement element)
 		{
 			this.BaseAdd(element);
 		}
@@ -26,12 +26,12 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
 			this.BaseClear();
 		}
 
-		public int IndexOf(ScriptsElement element)
+		public int IndexOf(ScriptElement element)
 		{
 			return this.BaseIndexOf(element);
 		}
 
-		public void Remove(ScriptsElement element)
+		public void Remove(ScriptElement element)
 		{
 			if (this.BaseIndexOf(element) >= 0)
 			{
@@ -44,11 +44,11 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
 			this.BaseRemoveAt(index);
 		}
 
-		public ScriptsElement this[int index]
+		public ScriptElement this[int index]
 		{
 			get
 			{
-				return (ScriptsElement)this.BaseGet(index);
+				return (ScriptElement)this.BaseGet(index);
 			}
 			set
 			{

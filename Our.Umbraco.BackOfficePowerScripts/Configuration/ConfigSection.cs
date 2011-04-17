@@ -8,8 +8,8 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration
 {
 	public class ConfigSection : ConfigurationSection
 	{
-		private static readonly ConfigurationProperty scripts = new ConfigurationProperty("scripts", typeof(ScriptsCollection), null, ConfigurationPropertyOptions.IsDefaultCollection);
-		private static readonly ConfigurationProperty styles = new ConfigurationProperty("styles", typeof(StylesCollection), null, ConfigurationPropertyOptions.IsDefaultCollection);
+		private static readonly ConfigurationProperty scripts = new ConfigurationProperty("scripts", typeof(ScriptCollection), null, ConfigurationPropertyOptions.IsDefaultCollection);
+		private static readonly ConfigurationProperty styles = new ConfigurationProperty("styles", typeof(StyleCollection), null, ConfigurationPropertyOptions.IsDefaultCollection);
 
 		private static ConfigurationPropertyCollection properties = new ConfigurationPropertyCollection();
 
@@ -20,20 +20,20 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration
 		}
 
 		[ConfigurationProperty("scripts", Options = ConfigurationPropertyOptions.IsDefaultCollection)]
-		public ScriptsCollection Scripts
+		public ScriptCollection Scripts
 		{
 			get
 			{
-				return (ScriptsCollection)base[scripts];
+				return (ScriptCollection)base[scripts];
 			}
 		}
 
 		[ConfigurationProperty("styles", Options = ConfigurationPropertyOptions.IsDefaultCollection)]
-		public StylesCollection Styles
+		public StyleCollection Styles
 		{
 			get
 			{
-				return (StylesCollection)base[styles];
+				return (StyleCollection)base[styles];
 			}
 		}
 	}
