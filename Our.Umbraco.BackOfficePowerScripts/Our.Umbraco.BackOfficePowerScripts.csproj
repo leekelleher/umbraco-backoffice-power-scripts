@@ -63,15 +63,17 @@
     <Compile Include="Configuration\Scripts\ScriptsCollection.cs" />
     <Compile Include="Configuration\Scripts\ScriptsElement.cs" />
     <Compile Include="Configuration\Scripts\ScriptsSection.cs" />
+    <Compile Include="Configuration\Styles\StylesCollection.cs" />
+    <Compile Include="Configuration\Styles\StylesElement.cs" />
+    <Compile Include="Configuration\Styles\StylesSection.cs" />
     <Compile Include="Events\ApplicationEventsHandler.cs" />
     <Compile Include="Extensions\Common.cs" />
-    <Compile Include="Modules\RegisterClientResources.cs" />
+    <Compile Include="Filters\AppendScripts.cs" />
+    <Compile Include="Modules\RegisterFilters.cs" />
     <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Configuration\Styles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Web\config\BackOfficePowerScripts.config" />
   </ItemGroup>

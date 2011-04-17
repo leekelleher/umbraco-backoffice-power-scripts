@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Configuration;
 
-namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
+namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 {
-	public class ScriptsElement : ConfigurationElement
+	public class StylesElement : ConfigurationElement
 	{
 		private static ConfigurationPropertyCollection properties;
 		private static ConfigurationProperty path;
 
-		static ScriptsElement()
+		static StylesElement()
 		{
 			path = new ConfigurationProperty("path", typeof(string), null, ConfigurationPropertyOptions.IsRequired);
 
