@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Our.Umbraco.BackOfficePowerScripts.Configuration;
+using Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Extensions
 {
@@ -14,6 +14,6 @@ namespace Our.Umbraco.BackOfficePowerScripts.Extensions
 			}
 		}
 
-		public static ScriptCollection RegisteredScripts { get; set; }
+		public static ScriptsCollection RegisteredScripts { get; set; }
 	}
 }

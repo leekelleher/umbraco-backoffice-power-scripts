@@ -60,16 +60,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ScriptCollection.cs" />
-    <Compile Include="Configuration\ScriptElement.cs" />
-    <Compile Include="Configuration\ScriptSection.cs" />
+    <Compile Include="Configuration\Scripts\ScriptsCollection.cs" />
+    <Compile Include="Configuration\Scripts\ScriptsElement.cs" />
+    <Compile Include="Configuration\Scripts\ScriptsSection.cs" />
     <Compile Include="Events\ApplicationEventsHandler.cs" />
     <Compile Include="Extensions\Common.cs" />
     <Compile Include="Modules\RegisterClientResources.cs" />
     <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Configuration\Styles\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Web\config\BackOfficePowerScripts.config" />
   </ItemGroup>

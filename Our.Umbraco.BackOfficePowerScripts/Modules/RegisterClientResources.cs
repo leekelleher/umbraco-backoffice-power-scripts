@@ -49,10 +49,10 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 								for (int i = 0; i < scripts.Count; i++)
 								{
 									var script = scripts[i];
-									var type = string.Equals(script.Type, "CSS", StringComparison.InvariantCultureIgnoreCase) ? ClientDependencyType.Css : ClientDependencyType.Javascript;
-
+									
 									// add the script to client dependency
-									ClientDependencyLoader.Instance.RegisterDependency(script.Priority, script.Path, type);
+									ClientDependencyLoader.Instance.RegisterDependency(script.Priority, script.Path, ClientDependencyType.Javascript);
+									// TODO: Append the <scripts/> to </body> (closing tag).
 								}
 							}
 						};

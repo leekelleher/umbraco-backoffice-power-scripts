@@ -1,41 +1,41 @@
 ﻿using System;
 using System.Configuration;
 
-namespace Our.Umbraco.BackOfficePowerScripts.Configuration
+namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
 {
-	[ConfigurationCollection(typeof(ScriptElement), CollectionType = ConfigurationElementCollectionType.BasicMap)]
-	public class ScriptCollection : ConfigurationElementCollection
+	[ConfigurationCollection(typeof(ScriptsElement), CollectionType = ConfigurationElementCollectionType.BasicMap)]
+	public class ScriptsCollection : ConfigurationElementCollection
 	{
 		protected override ConfigurationElement CreateNewElement()
 		{
-			return new ScriptElement();
+			return new ScriptsElement();
 		}
 
 		protected override object GetElementKey(ConfigurationElement element)
 		{
-			return (element as ScriptElement).Name;
+			return (element as ScriptsElement).Path;
 		}
 
-		public void Add(ScriptElement element)
+		public void Add(ScriptsElement element)
 		{
 			this.BaseAdd(element);
 		}
-		
+
 		public void Clear()
 		{
 			this.BaseClear();
 		}
 
-		public int IndexOf(ScriptElement element)
+		public int IndexOf(ScriptsElement element)
 		{
 			return this.BaseIndexOf(element);
 		}
 
-		public void Remove(ScriptElement element)
+		public void Remove(ScriptsElement element)
 		{
 			if (this.BaseIndexOf(element) >= 0)
 			{
-				this.BaseRemove(element.Name);
+				this.BaseRemove(element.Path);
 			}
 		}
 
@@ -44,11 +44,11 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration
 			this.BaseRemoveAt(index);
 		}
 
-		public ScriptElement this[int index]
+		public ScriptsElement this[int index]
 		{
 			get
 			{
-				return (ScriptElement)this.BaseGet(index);
+				return (ScriptsElement)this.BaseGet(index);
 			}
 			set
 			{
