@@ -19,6 +19,24 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 	public class RegisterFilters : IHttpModule
 	{
 		/// <summary>
+		/// Gets or sets the current execution file path.
+		/// </summary>
+		/// <value>The current execution file path.</value>
+		public string CurrentExecutionFilePath { get; set; }
+
+		/// <summary>
+		/// Gets or sets the umbraco/default.aspx.
+		/// </summary>
+		/// <value>The umbraco default aspx.</value>
+		public string UmbracoDefaultAspx { get; set; }
+
+		/// <summary>
+		/// Gets or sets the umbraco/umbraco.aspx.
+		/// </summary>
+		/// <value>The umbraco/umbraco.aspx.</value>
+		public string UmbracoUmbracoAspx { get; set; }
+
+		/// <summary>
 		/// Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
 		/// </summary>
 		public void Dispose()
@@ -31,26 +49,43 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		/// <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
 		public void Init(HttpApplication context)
 		{
-			string currentExecutionFilePath = context.Request.CurrentExecutionFilePath;
 			string umbracoPath = SystemDirectories.Umbraco.TrimStart('~');
-			string umbracoDefault = string.Concat(umbracoPath, "/default.aspx");
-			string umbracoUmbraco = string.Concat(umbracoPath, "/umbraco.aspx");
+			this.UmbracoDefaultAspx = string.Concat(umbracoPath, "/default.aspx");
+			this.UmbracoUmbracoAspx = string.Concat(umbracoPath, "/umbraco.aspx");
 
-			if (string.Equals(currentExecutionFilePath, umbracoDefault, StringComparison.InvariantCultureIgnoreCase))
+			context.PostMapRequestHandler += new EventHandler(context_PostMapRequestHandler);
+			context.PostReleaseRequestState += new EventHandler(context_PostReleaseRequestState);
+		}
+
+		/// <summary>
+		/// Handles the PostMapRequestHandler event of the context control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+		protected void context_PostMapRequestHandler(object sender, EventArgs e)
+		{
+			var context = sender as HttpApplication;
+			this.CurrentExecutionFilePath = context.Request.CurrentExecutionFilePath;
+			
+			if (string.Equals(this.CurrentExecutionFilePath, this.UmbracoDefaultAspx, StringComparison.InvariantCultureIgnoreCase))
 			{
-				context.Response.Redirect(umbracoUmbraco);
+				context.Response.Redirect(this.UmbracoUmbracoAspx, true);
 				return;
-			}
-
-			if (string.Equals(currentExecutionFilePath, umbracoUmbraco, StringComparison.InvariantCultureIgnoreCase))
-			{
-				context.PostReleaseRequestState += new EventHandler(context_PostReleaseRequestState);
 			}
 		}
 
+		/// <summary>
+		/// Handles the PostReleaseRequestState event of the context control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
 		protected void context_PostReleaseRequestState(object sender, EventArgs e)
 		{
-			HttpContext.Current.Response.Filter = new AppendScripts(HttpContext.Current.Response.Filter);
+			if (string.Equals(this.CurrentExecutionFilePath, this.UmbracoUmbracoAspx, StringComparison.InvariantCultureIgnoreCase))
+			{
+				var context = sender as HttpApplication;
+				context.Response.Filter = new AppendScripts(context.Response.Filter);
+			}
 		}
 	}
 }

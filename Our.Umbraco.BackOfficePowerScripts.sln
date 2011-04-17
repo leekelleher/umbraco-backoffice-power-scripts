@@ -6,6 +6,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Assemblies", "External Assemblies", "{05F07B85-B878-4BC8-97EF-215BF36D5D8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Umbraco Assemblies", "Umbraco Assemblies", "{FE77750C-9A78-4F24-A4BB-EC7813C7D89C}"
+	ProjectSection(SolutionItems) = preProject
+		_externals\businesslogic.dll = _externals\businesslogic.dll
+		_externals\ClientDependency.Core.dll = _externals\ClientDependency.Core.dll
+		_externals\cms.dll = _externals\cms.dll
+		_externals\interfaces.dll = _externals\interfaces.dll
+		_externals\umbraco.dll = _externals\umbraco.dll
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Package", "Build Package", "{BF68D655-A28B-4D2F-900D-184F778FB552}"
 	ProjectSection(SolutionItems) = preProject

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Web;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
 {
@@ -39,7 +40,8 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
 
 		public override string ToString()
 		{
-			return string.Format("<script type='text/javascript' src='{0}'></script>", this.Path);
+			var path = VirtualPathUtility.ToAbsolute(this.Path);
+			return string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>", path);
 		}
 	}
 }
