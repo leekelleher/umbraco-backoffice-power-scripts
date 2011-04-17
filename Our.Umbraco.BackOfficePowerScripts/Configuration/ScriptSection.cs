@@ -5,7 +5,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration
 {
 	public class ScriptSection : ConfigurationSection
 	{
-		private static readonly ConfigurationProperty scripts = new ConfigurationProperty(null, typeof(ScriptCollection), null, ConfigurationPropertyOptions.IsDefaultCollection);
+		private static readonly ConfigurationProperty scripts = new ConfigurationProperty("script", typeof(ScriptCollection), null, ConfigurationPropertyOptions.IsDefaultCollection);
 
 		private static ConfigurationPropertyCollection properties = new ConfigurationPropertyCollection();
 
@@ -14,7 +14,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration
 			properties.Add(scripts);
 		}
 
-		[ConfigurationProperty("", Options = ConfigurationPropertyOptions.IsDefaultCollection)]
+		[ConfigurationProperty("script", Options = ConfigurationPropertyOptions.IsDefaultCollection)]
 		public ScriptCollection Scripts
 		{
 			get
