@@ -7,13 +7,16 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 	{
 		private static ConfigurationPropertyCollection properties;
 		private static ConfigurationProperty path;
+		private static ConfigurationProperty targets;
 
 		static StyleElement()
 		{
 			path = new ConfigurationProperty("path", typeof(string), null, ConfigurationPropertyOptions.IsRequired);
+			path = new ConfigurationProperty("targets", typeof(string), null, ConfigurationPropertyOptions.None);
 
 			properties = new ConfigurationPropertyCollection();
 			properties.Add(path);
+			properties.Add(targets);
 		}
 
 		[ConfigurationProperty("path", IsKey = true, IsRequired = true)]
@@ -26,6 +29,19 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 			set
 			{
 				base[path] = value;
+			}
+		}
+
+		[ConfigurationProperty("targets", DefaultValue = "umbraco.aspx")]
+		public string Targets
+		{
+			get
+			{
+				return (string)base[targets];
+			}
+			set
+			{
+				base[targets] = value;
 			}
 		}
 

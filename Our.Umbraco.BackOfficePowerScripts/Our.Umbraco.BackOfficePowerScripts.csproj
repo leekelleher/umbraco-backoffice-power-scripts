@@ -72,15 +72,14 @@
     <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Web\umbraco\plugins\BackOfficePowerScripts\styles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Web\config\BackOfficePowerScripts.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\btn-our-umbraco.js" />
     <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\sections-href-fix.js" />
+    <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\styles\fancy-property-name.css" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

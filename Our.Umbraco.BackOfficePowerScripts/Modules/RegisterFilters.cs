@@ -81,6 +81,8 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
 		protected void context_PostReleaseRequestState(object sender, EventArgs e)
 		{
+			// TODO: Compare the 'ScriptTargets' and 'StyleTargets' with 'CurrentExecutionFilePath'
+
 			if (string.Equals(this.CurrentExecutionFilePath, this.UmbracoUmbracoAspx, StringComparison.InvariantCultureIgnoreCase))
 			{
 				var context = sender as HttpApplication;

@@ -43,6 +43,10 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 			var section = config.GetSection(Common.ConfigName) as ConfigSection;
 			Common.RegisteredScripts = section.Scripts;
 			Common.RegisteredStyles = section.Styles;
+
+			// TODO: Load up the targets
+			// ScriptTargets
+			// StyleTargets
 		}
 	}
 }
