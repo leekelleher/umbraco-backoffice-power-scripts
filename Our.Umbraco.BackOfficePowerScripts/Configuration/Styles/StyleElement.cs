@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Web;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 {
@@ -12,7 +13,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 		static StyleElement()
 		{
 			path = new ConfigurationProperty("path", typeof(string), null, ConfigurationPropertyOptions.IsRequired);
-			path = new ConfigurationProperty("targets", typeof(string), null, ConfigurationPropertyOptions.None);
+			targets = new ConfigurationProperty("targets", typeof(string), null, ConfigurationPropertyOptions.None);
 
 			properties = new ConfigurationPropertyCollection();
 			properties.Add(path);
@@ -55,7 +56,8 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Styles
 
 		public override string ToString()
 		{
-			return string.Format("<script type='text/javascript' src='{0}'></script>", this.Path);
+			var path = VirtualPathUtility.ToAbsolute(this.Path);
+			return string.Format("<link rel='stylesheet' type='text/css' href='{0}' />", path);
 		}
 	}
 }

@@ -39,6 +39,9 @@
     <Reference Include="ClientDependency.Core">
       <HintPath>..\_externals\ClientDependency.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ClientResourceInjector">
+      <HintPath>..\_externals\ClientResourceInjector.dll</HintPath>
+    </Reference>
     <Reference Include="cms, Version=1.0.4089.21636, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\_externals\cms.dll</HintPath>
     </Reference>

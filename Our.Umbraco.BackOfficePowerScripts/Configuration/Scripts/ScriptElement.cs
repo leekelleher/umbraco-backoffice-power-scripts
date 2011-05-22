@@ -13,7 +13,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts
 		static ScriptElement()
 		{
 			path = new ConfigurationProperty("path", typeof(string), null, ConfigurationPropertyOptions.IsRequired);
-			path = new ConfigurationProperty("targets", typeof(string), null, ConfigurationPropertyOptions.None);
+			targets = new ConfigurationProperty("targets", typeof(string), null, ConfigurationPropertyOptions.None);
 
 			properties = new ConfigurationPropertyCollection();
 			properties.Add(path);
