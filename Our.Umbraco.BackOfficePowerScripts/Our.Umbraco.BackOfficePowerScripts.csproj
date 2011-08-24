@@ -70,8 +70,6 @@
     <Compile Include="Configuration\Styles\StyleElement.cs" />
     <Compile Include="Events\ApplicationEventsHandler.cs" />
     <Compile Include="Extensions\Common.cs" />
-    <Compile Include="Filters\AppendScripts.cs" />
-    <Compile Include="Modules\RegisterFilters.cs" />
     <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

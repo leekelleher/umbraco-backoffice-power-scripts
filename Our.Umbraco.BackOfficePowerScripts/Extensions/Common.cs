@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 using Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts;
 using Our.Umbraco.BackOfficePowerScripts.Configuration.Styles;
 

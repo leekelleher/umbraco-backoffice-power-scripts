@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-
+﻿using System.Configuration;
 using Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts;
 using Our.Umbraco.BackOfficePowerScripts.Configuration.Styles;
 
