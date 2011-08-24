@@ -47,6 +47,7 @@
 	<Target Name="PrepairFiles" DependsOnTargets="Compile">
 		<ItemGroup>
 			<BinFiles Include="$(RootDir)\bin\Release\$(PackageProjectName).*" />
+			<BinFiles Include="$(RootDir)\bin\Release\ClientResourceInjector.dll" />
 			<ConfigFiles Include="$(RootDir)\Web\config\BackOfficePowerScripts.config" />
 			<ScriptsFiles Include="$(RootDir)\Web\umbraco\plugins\BackOfficePowerScripts\scripts\*.js" />
 			<PackageFile Include="$(MSBuildProjectDirectory)\package.xml" />
