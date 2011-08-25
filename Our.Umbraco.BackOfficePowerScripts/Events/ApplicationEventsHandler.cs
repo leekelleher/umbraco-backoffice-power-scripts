@@ -7,13 +7,22 @@ using umbraco.BusinessLogic;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Events
 {
+	/// <summary>
+	/// Application for BackOfficePowerScripts.
+	/// </summary>
 	public class ApplicationEventsHandler : ApplicationBase
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ApplicationEventsHandler"/> class.
+		/// </summary>
 		public ApplicationEventsHandler()
 		{
 			this.LoadRegisteredScripts();
 		}
 
+		/// <summary>
+		/// Loads the registered scripts.
+		/// </summary>
 		private void LoadRegisteredScripts()
 		{
 			var config = WebConfigurationManager.OpenWebConfiguration("~/");

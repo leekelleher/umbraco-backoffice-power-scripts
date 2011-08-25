@@ -46,15 +46,17 @@
 	<!-- PREPAIRE FILES -->
 	<Target Name="PrepairFiles" DependsOnTargets="Compile">
 		<ItemGroup>
-			<BinFiles Include="$(RootDir)\bin\Release\$(PackageProjectName).*" />
+			<BinFiles Include="$(RootDir)\bin\Release\$(PackageProjectName).dll" />
 			<BinFiles Include="$(RootDir)\bin\Release\ClientResourceInjector.dll" />
 			<ConfigFiles Include="$(RootDir)\Web\config\BackOfficePowerScripts.config" />
 			<ScriptsFiles Include="$(RootDir)\Web\umbraco\plugins\BackOfficePowerScripts\scripts\*.js" />
+			<StylesFiles Include="$(RootDir)\Web\umbraco\plugins\BackOfficePowerScripts\styles\*.css" />
 			<PackageFile Include="$(MSBuildProjectDirectory)\package.xml" />
 		</ItemGroup>
 		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
 		<Copy SourceFiles="@(ConfigFiles)" DestinationFolder="$(BuildDir)\config" />
 		<Copy SourceFiles="@(ScriptsFiles)" DestinationFolder="$(BuildDir)\umbraco\plugins\BackOfficePowerScripts\scripts" />
+		<Copy SourceFiles="@(StylesFiles)" DestinationFolder="$(BuildDir)\umbraco\plugins\BackOfficePowerScripts\styles" />
 		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
 	</Target>
 
