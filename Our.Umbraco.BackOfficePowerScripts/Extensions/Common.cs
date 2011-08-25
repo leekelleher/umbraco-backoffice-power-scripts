@@ -13,13 +13,5 @@ namespace Our.Umbraco.BackOfficePowerScripts.Extensions
 				return "BackOfficePowerScripts";
 			}
 		}
-
-		public static ScriptCollection RegisteredScripts { get; set; }
-		
-		public static StyleCollection RegisteredStyles { get; set; }
-
-		public static List<string> ScriptTargets { get; set; }
-		
-		public static List<string> StyleTargets { get; set; }
 	}
 }

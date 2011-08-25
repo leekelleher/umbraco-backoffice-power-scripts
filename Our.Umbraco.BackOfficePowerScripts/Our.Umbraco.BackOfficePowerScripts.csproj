@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Our.Umbraco.BackOfficePowerScripts.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Our.Umbraco.BackOfficePowerScripts.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="businesslogic">
@@ -39,7 +41,7 @@
     <Reference Include="ClientDependency.Core">
       <HintPath>..\_externals\ClientDependency.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ClientResourceInjector">
+    <Reference Include="ClientResourceInjector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\_externals\ClientResourceInjector.dll</HintPath>
     </Reference>
     <Reference Include="cms, Version=1.0.4089.21636, Culture=neutral, processorArchitecture=MSIL">
@@ -53,10 +55,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="umbraco">
       <HintPath>..\_externals\umbraco.dll</HintPath>
