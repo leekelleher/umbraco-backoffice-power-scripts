@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Our.Umbraco.BackOfficePowerScripts.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Our.Umbraco.BackOfficePowerScripts.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="businesslogic">
@@ -38,6 +40,9 @@
     </Reference>
     <Reference Include="ClientDependency.Core">
       <HintPath>..\_externals\ClientDependency.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ClientResourceInjector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\_externals\ClientResourceInjector.dll</HintPath>
     </Reference>
     <Reference Include="cms, Version=1.0.4089.21636, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\_externals\cms.dll</HintPath>
@@ -50,10 +55,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="umbraco">
       <HintPath>..\_externals\umbraco.dll</HintPath>
@@ -67,8 +69,6 @@
     <Compile Include="Configuration\Styles\StyleElement.cs" />
     <Compile Include="Events\ApplicationEventsHandler.cs" />
     <Compile Include="Extensions\Common.cs" />
-    <Compile Include="Filters\AppendScripts.cs" />
-    <Compile Include="Modules\RegisterFilters.cs" />
     <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\btn-our-umbraco.js" />
+    <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\custom-favicon.js" />
     <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\sections-href-fix.js" />
     <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\styles\fancy-property-name.css" />
   </ItemGroup>

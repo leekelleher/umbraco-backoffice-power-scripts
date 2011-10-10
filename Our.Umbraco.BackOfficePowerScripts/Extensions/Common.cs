@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 using Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts;
 using Our.Umbraco.BackOfficePowerScripts.Configuration.Styles;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Extensions
 {
+	/// <summary>
+	/// Class for common items.
+	/// </summary>
 	public class Common
 	{
+		/// <summary>
+		/// Gets the name of the config.
+		/// </summary>
+		/// <value>The name of the config.</value>
 		public static string ConfigName
 		{
 			get
@@ -15,13 +20,5 @@ namespace Our.Umbraco.BackOfficePowerScripts.Extensions
 				return "BackOfficePowerScripts";
 			}
 		}
-
-		public static ScriptCollection RegisteredScripts { get; set; }
-		
-		public static StyleCollection RegisteredStyles { get; set; }
-
-		public static List<string> ScriptTargets { get; set; }
-		
-		public static List<string> StyleTargets { get; set; }
 	}
 }

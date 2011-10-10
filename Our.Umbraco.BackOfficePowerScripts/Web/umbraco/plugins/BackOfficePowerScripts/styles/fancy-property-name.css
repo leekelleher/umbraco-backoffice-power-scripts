@@ -1,3 +1,7 @@
-﻿body
+﻿.propertyItemheader
 {
+	color: #F09000;
+	font-size: large;
+	font-weight: normal;
+	text-shadow: #333333 2px 2px 2px;
 }
