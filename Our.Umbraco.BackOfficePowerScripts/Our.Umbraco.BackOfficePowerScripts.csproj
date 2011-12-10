@@ -41,8 +41,8 @@
     <Reference Include="ClientDependency.Core">
       <HintPath>..\_externals\ClientDependency.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ClientResourceInjector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\_externals\ClientResourceInjector.dll</HintPath>
+    <Reference Include="ClientInjection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\_externals\ClientInjection.dll</HintPath>
     </Reference>
     <Reference Include="cms, Version=1.0.4089.21636, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\_externals\cms.dll</HintPath>

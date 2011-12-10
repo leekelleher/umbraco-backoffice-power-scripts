@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.BackOfficePower
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Assemblies", "External Assemblies", "{05F07B85-B878-4BC8-97EF-215BF36D5D8A}"
 	ProjectSection(SolutionItems) = preProject
-		_externals\ClientResourceInjector.dll = _externals\ClientResourceInjector.dll
+		_externals\ClientInjection.dll = _externals\ClientInjection.dll
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Umbraco Assemblies", "Umbraco Assemblies", "{FE77750C-9A78-4F24-A4BB-EC7813C7D89C}"
