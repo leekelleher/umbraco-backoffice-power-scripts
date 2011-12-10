@@ -76,9 +76,9 @@
             </summary>
             <param name="targets">The targets.</param>
         </member>
-        <member name="M:ClientInjection.ClientControl.InjectControl(System.Web.UI.Page)">
+        <member name="M:ClientInjection.ClientControl.InterceptPage(System.Web.UI.Page)">
             <summary>
-            Injects the control.
+            Intercepts the page.
             </summary>
             <param name="page">The page.</param>
         </member>
@@ -247,6 +247,19 @@
             Gets or sets the <see cref="T:ClientInjection.ClientResource"/> type.
             </summary>
             <value>The type.</value>
+        </member>
+        <member name="T:ClientInjection.Helper">
+            <summary>
+            Class for helper methods.
+            </summary>
+        </member>
+        <member name="M:ClientInjection.Helper.FindControlByID(System.Web.UI.Control,System.String)">
+            <summary>
+            Finds the control by ID.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="controlId">The control id.</param>
+            <returns>Returns the control for the specified id.</returns>
         </member>
         <member name="T:ClientInjection.Attributes.ClientResourceAttribute">
             <summary>
