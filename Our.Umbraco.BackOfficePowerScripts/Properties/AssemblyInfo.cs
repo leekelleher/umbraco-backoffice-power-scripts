@@ -1,15 +1,14 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following set of attributes.
 // Change these attribute values to modify the information associated with an assembly.
 [assembly: AssemblyTitle("Our.Umbraco.BackOfficePowerScripts")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("BackOffice Power Scripts for Umbraco")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Vertino Ltd")]
+[assembly: AssemblyCompany("Umbrella Inc Ltd")]
 [assembly: AssemblyProduct("Our.Umbraco.BackOfficePowerScripts")]
-[assembly: AssemblyCopyright("Copyright Vertino Ltd 2011")]
+[assembly: AssemblyCopyright("Copyright (c) Umbrella Inc Ltd 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -18,7 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6f60c63d-ec16-4f70-acb9-9fa1939c5286")]
+[assembly: Guid("6F60C63D-EC16-4F70-ACB9-9FA1939C5286")]
 
 // Version information for an assembly consists of the following four values:
 // Major Version, Minor Version, Build Number, Revision
