@@ -4,15 +4,36 @@
         <name>ClientResourceInjector</name>
     </assembly>
     <members>
-        <member name="T:ClientResourceInjector.ClientResource">
+        <member name="T:ClientResourceInjector.ClientResourceType">
             <summary>
-            The ClientResource.
+            Types of <see cref="T:ClientResourceInjector.ClientResource"/>.
+            </summary>
+        </member>
+        <member name="F:ClientResourceInjector.ClientResourceType.Css">
+            <summary>
+            Cascading Style Sheet
+            </summary>
+        </member>
+        <member name="F:ClientResourceInjector.ClientResourceType.JavaScript">
+            <summary>
+            JavaScript
             </summary>
         </member>
         <member name="T:ClientResourceInjector.Interfaces.IClientResource">
             <summary>
             Interface for a ClientResource item.
             </summary>
+        </member>
+        <member name="T:ClientResourceInjector.Interfaces.IClientTarget">
+            <summary>
+            Interface for ClientTarget item.
+            </summary>
+        </member>
+        <member name="P:ClientResourceInjector.Interfaces.IClientTarget.Targets">
+            <summary>
+            Gets or sets the targets.
+            </summary>
+            <value>The targets.</value>
         </member>
         <member name="P:ClientResourceInjector.Interfaces.IClientResource.Path">
             <summary>
@@ -26,17 +47,102 @@
             </summary>
             <value>The priority.</value>
         </member>
-        <member name="P:ClientResourceInjector.Interfaces.IClientResource.Targets">
-            <summary>
-            Gets or sets the targets.
-            </summary>
-            <value>The targets.</value>
-        </member>
         <member name="P:ClientResourceInjector.Interfaces.IClientResource.Type">
             <summary>
             Gets or sets the <see cref="T:ClientResourceInjector.ClientResource"/> type.
             </summary>
             <value>The type.</value>
+        </member>
+        <member name="T:ClientResourceInjector.ClientControl">
+            <summary>
+            The ClientControl.
+            </summary>
+        </member>
+        <member name="T:ClientResourceInjector.Interfaces.IClientControl">
+            <summary>
+            Interface for ClientControl item.
+            </summary>
+        </member>
+        <member name="M:ClientResourceInjector.ClientControl.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ClientResourceInjector.ClientControl"/> class.
+            </summary>
+            <param name="targets">The targets.</param>
+        </member>
+        <member name="M:ClientResourceInjector.ClientControl.InjectControl(System.Web.UI.Page)">
+            <summary>
+            Injects the control.
+            </summary>
+            <param name="page">The page.</param>
+        </member>
+        <member name="P:ClientResourceInjector.ClientControl.Targets">
+            <summary>
+            Gets or sets the targets.
+            </summary>
+            <value>The targets.</value>
+        </member>
+        <member name="T:ClientResourceInjector.Attributes.ClientResourceAttribute">
+            <summary>
+            Custom attribute for registering a client resource.
+            </summary>
+        </member>
+        <member name="M:ClientResourceInjector.Attributes.ClientResourceAttribute.#ctor(ClientResourceInjector.Interfaces.IClientResource)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ClientResourceInjector.Attributes.ClientResourceAttribute"/> class.
+            </summary>
+            <param name="clientResource">The client resource.</param>
+        </member>
+        <member name="M:ClientResourceInjector.Attributes.ClientResourceAttribute.#ctor(System.String,System.Int32,System.String,ClientResourceInjector.ClientResourceType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ClientResourceInjector.Attributes.ClientResourceAttribute"/> class.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="priority">The priority.</param>
+            <param name="targets">The targets.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:ClientResourceInjector.Attributes.ClientResourceAttribute.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="P:ClientResourceInjector.Attributes.ClientResourceAttribute.ClientResource">
+            <summary>
+            Gets or sets the client resource.
+            </summary>
+            <value>The client resource.</value>
+        </member>
+        <member name="P:ClientResourceInjector.Attributes.ClientResourceAttribute.Path">
+            <summary>
+            Gets or sets the path.
+            </summary>
+            <value>The path.</value>
+        </member>
+        <member name="P:ClientResourceInjector.Attributes.ClientResourceAttribute.Type">
+            <summary>
+            Gets or sets the type of the client resource.
+            </summary>
+            <value>The type of the client resource.</value>
+        </member>
+        <member name="P:ClientResourceInjector.Attributes.ClientResourceAttribute.Priority">
+            <summary>
+            Gets or sets the priority.
+            </summary>
+            <value>The priority.</value>
+        </member>
+        <member name="P:ClientResourceInjector.Attributes.ClientResourceAttribute.Targets">
+            <summary>
+            Gets or sets the targets.
+            </summary>
+            <value>The targets.</value>
+        </member>
+        <member name="T:ClientResourceInjector.ClientResource">
+            <summary>
+            The ClientResource.
+            </summary>
         </member>
         <member name="M:ClientResourceInjector.ClientResource.#ctor">
             <summary>
@@ -89,119 +195,6 @@
             Gets or sets the <see cref="T:ClientResourceInjector.ClientResource"/> type.
             </summary>
             <value>The type.</value>
-        </member>
-        <member name="T:ClientResourceInjector.Application">
-            <summary>
-            The ClientResourceInjector application.
-            </summary>
-        </member>
-        <member name="F:ClientResourceInjector.Application.instance">
-            <summary>
-            Field for the instance of the ClientResourceInjector application.
-            </summary>
-        </member>
-        <member name="F:ClientResourceInjector.Application.modulesRegistered">
-            <summary>
-            Field to flag that the HttpModules have been registered.
-            </summary>
-        </member>
-        <member name="M:ClientResourceInjector.Application.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:ClientResourceInjector.Application"/> class.
-            </summary>
-        </member>
-        <member name="M:ClientResourceInjector.Application.AddClientResource(ClientResourceInjector.Interfaces.IClientResource)">
-            <summary>
-            Adds the client resource to the target.
-            </summary>
-            <param name="clientResource">The client resource.</param>
-        </member>
-        <member name="M:ClientResourceInjector.Application.AddClientResource(System.String,ClientResourceInjector.ClientResourceType,System.Int32,System.String)">
-            <summary>
-            Adds the client resource to the target.
-            </summary>
-            <param name="path">The path.</param>
-            <param name="type">The type.</param>
-            <param name="priority">The priority.</param>
-            <param name="targets">The targets.</param>
-        </member>
-        <member name="M:ClientResourceInjector.Application.AddCss(System.String,System.Int32,System.String)">
-            <summary>
-            Adds the CSS to the target.
-            </summary>
-            <param name="path">The path.</param>
-            <param name="priority">The priority.</param>
-            <param name="targets">The targets.</param>
-        </member>
-        <member name="M:ClientResourceInjector.Application.AddJavaScript(System.String,System.Int32,System.String)">
-            <summary>
-            Adds the JavaScript to the target.
-            </summary>
-            <param name="path">The path.</param>
-            <param name="priority">The priority.</param>
-            <param name="targets">The targets.</param>
-        </member>
-        <member name="M:ClientResourceInjector.Application.RegisterModules">
-            <summary>
-            Registers the HttpModules.
-            </summary>
-        </member>
-        <member name="P:ClientResourceInjector.Application.Instance">
-            <summary>
-            Gets the instance of the ClientResourceInjector application.
-            </summary>
-            <value>The instance.</value>
-        </member>
-        <member name="P:ClientResourceInjector.Application.ClientResources">
-            <summary>
-            Gets or sets the client resources.
-            </summary>
-            <value>The client resources.</value>
-        </member>
-        <member name="T:ClientResourceInjector.Modules.RegisterFilters">
-            <summary>
-            HttpModule for registering the Response.Filters.
-            </summary>
-        </member>
-        <member name="M:ClientResourceInjector.Modules.RegisterFilters.Dispose">
-            <summary>
-            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
-            </summary>
-        </member>
-        <member name="M:ClientResourceInjector.Modules.RegisterFilters.Init(System.Web.HttpApplication)">
-            <summary>
-            Initializes a module and prepares it to handle requests.
-            </summary>
-            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
-        </member>
-        <member name="M:ClientResourceInjector.Modules.RegisterFilters.context_PostReleaseRequestState(System.Object,System.EventArgs)">
-            <summary>
-            Handles the PostReleaseRequestState event of the context control.
-            </summary>
-            <param name="sender">The source of the event.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:ClientResourceInjector.Modules.RegisterFilters.GetRegisteredClientResources(System.String)">
-            <summary>
-            Gets the registered ClientResource items.
-            </summary>
-            <param name="path">The path.</param>
-            <returns>Returns a list of registered ClientResource items.</returns>
-        </member>
-        <member name="T:ClientResourceInjector.ClientResourceType">
-            <summary>
-            Types of <see cref="T:ClientResourceInjector.ClientResource"/>.
-            </summary>
-        </member>
-        <member name="F:ClientResourceInjector.ClientResourceType.Css">
-            <summary>
-            Cascading Style Sheet
-            </summary>
-        </member>
-        <member name="F:ClientResourceInjector.ClientResourceType.JavaScript">
-            <summary>
-            JavaScript
-            </summary>
         </member>
         <member name="T:ClientResourceInjector.Filters.InjectResources">
             <summary>
@@ -256,6 +249,132 @@
             	<paramref name="offset"/> or <paramref name="count"/> are negative. </exception>
             <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
             <exception cref="T:System.ObjectDisposedException">The current stream instance is closed. </exception>
+        </member>
+        <member name="T:ClientResourceInjector.Application">
+            <summary>
+            The ClientResourceInjector application.
+            </summary>
+        </member>
+        <member name="F:ClientResourceInjector.Application.instance">
+            <summary>
+            Field for the instance of the ClientResourceInjector application.
+            </summary>
+        </member>
+        <member name="F:ClientResourceInjector.Application.modulesRegistered">
+            <summary>
+            Field to flag that the HttpModules have been registered.
+            </summary>
+        </member>
+        <member name="M:ClientResourceInjector.Application.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ClientResourceInjector.Application"/> class.
+            </summary>
+        </member>
+        <member name="M:ClientResourceInjector.Application.AddClientControl(ClientResourceInjector.ClientControl)">
+            <summary>
+            Adds the client control to the target.
+            </summary>
+            <param name="clientControl">The client control.</param>
+        </member>
+        <member name="M:ClientResourceInjector.Application.AddClientResource(ClientResourceInjector.ClientResource)">
+            <summary>
+            Adds the client resource to the target.
+            </summary>
+            <param name="clientResource">The client resource.</param>
+        </member>
+        <member name="M:ClientResourceInjector.Application.AddClientResource(System.String,ClientResourceInjector.ClientResourceType,System.Int32,System.String)">
+            <summary>
+            Adds the client resource to the target.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="type">The type.</param>
+            <param name="priority">The priority.</param>
+            <param name="targets">The targets.</param>
+        </member>
+        <member name="M:ClientResourceInjector.Application.AddCss(System.String,System.Int32,System.String)">
+            <summary>
+            Adds the CSS to the target.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="priority">The priority.</param>
+            <param name="targets">The targets.</param>
+        </member>
+        <member name="M:ClientResourceInjector.Application.AddJavaScript(System.String,System.Int32,System.String)">
+            <summary>
+            Adds the JavaScript to the target.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="priority">The priority.</param>
+            <param name="targets">The targets.</param>
+        </member>
+        <member name="M:ClientResourceInjector.Application.RegisterModules">
+            <summary>
+            Registers the HttpModules.
+            </summary>
+        </member>
+        <member name="P:ClientResourceInjector.Application.Instance">
+            <summary>
+            Gets the instance of the ClientResourceInjector application.
+            </summary>
+            <value>The instance.</value>
+        </member>
+        <member name="P:ClientResourceInjector.Application.ClientControls">
+            <summary>
+            Gets or sets the client controls.
+            </summary>
+            <value>The client controls.</value>
+        </member>
+        <member name="P:ClientResourceInjector.Application.ClientResources">
+            <summary>
+            Gets or sets the client resources.
+            </summary>
+            <value>The client resources.</value>
+        </member>
+        <member name="T:ClientResourceInjector.Modules.RegisterFilters">
+            <summary>
+            HttpModule for registering the Response.Filters.
+            </summary>
+        </member>
+        <member name="M:ClientResourceInjector.Modules.RegisterFilters.Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+            </summary>
+        </member>
+        <member name="M:ClientResourceInjector.Modules.RegisterFilters.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        </member>
+        <member name="M:ClientResourceInjector.Modules.RegisterFilters.context_PostReleaseRequestState(System.Object,System.EventArgs)">
+            <summary>
+            Handles the PostReleaseRequestState event of the context control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ClientResourceInjector.Modules.RegisterFilters.GetRegisteredClientResources(System.String)">
+            <summary>
+            Gets the registered ClientResource items.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>Returns a list of registered ClientResource items.</returns>
+        </member>
+        <member name="T:ClientResourceInjector.Modules.RegisterControls">
+            <summary>
+            HttpModule for registering the control injections.
+            </summary>
+        </member>
+        <member name="M:ClientResourceInjector.Modules.RegisterControls.Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+            </summary>
+        </member>
+        <member name="M:ClientResourceInjector.Modules.RegisterControls.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
         </member>
     </members>
 </doc>
