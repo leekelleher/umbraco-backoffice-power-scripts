@@ -4,12 +4,12 @@
 	<info>
 		<package>
 			<name>BackOffice Power Scripts</name>
-			<version>1.0</version>
+			<version>0.0.0</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
 			<url>http://our.umbraco.org/projects/backoffice-extensions/backoffice-power-scripts</url>
 			<requirements>
-				<major>4</major>
-				<minor>7</minor>
+				<major>0</major>
+				<minor>0</minor>
 				<patch>0</patch>
 			</requirements>
 		</package>

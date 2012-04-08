@@ -1,4 +1,4 @@
-Copyright (c) 2011 by Lee Kelleher
+Copyright (c) 2012 by Lee Kelleher
 
 This software consists of voluntary contributions made by Lee
 Kelleher (https://bitbucket.org/vertino) For exact contribution 

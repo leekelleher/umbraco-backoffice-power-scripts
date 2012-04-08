@@ -7,7 +7,7 @@
 
 	<!-- PROPERTIES -->
 	<PropertyGroup>
-		<PackageVersion>1.0</PackageVersion>
+		<PackageVersion>1.0.0</PackageVersion>
 		<PackageProjectName>Our.Umbraco.BackOfficePowerScripts</PackageProjectName>
 	</PropertyGroup>
 
@@ -30,12 +30,12 @@
 			Encoding="ASCII"
 			Files="$(RootDir)\Properties\AssemblyInfo.cs"
 			Regex="AssemblyVersion\(&quot;.*&quot;\)\]"
-			ReplacementText="AssemblyVersion(&quot;$(PackageVersion).0.0&quot;)]" />
+			ReplacementText="AssemblyVersion(&quot;$(PackageVersion).*&quot;)]" />
 		<FileUpdate
 			Encoding="ASCII"
 			Files="$(RootDir)\Properties\AssemblyInfo.cs"
 			Regex="AssemblyFileVersion\(&quot;.*&quot;\)\]"
-			ReplacementText="AssemblyFileVersion(&quot;$(PackageVersion).0.0&quot;)]" />
+			ReplacementText="AssemblyFileVersion(&quot;$(PackageVersion).*&quot;)]" />
 	</Target>
 
 	<!-- COMPILE -->
@@ -47,7 +47,6 @@
 	<Target Name="PrepairFiles" DependsOnTargets="Compile">
 		<ItemGroup>
 			<BinFiles Include="$(RootDir)\bin\Release\$(PackageProjectName).dll" />
-			<BinFiles Include="$(RootDir)\bin\Release\ClientInjection.dll" />
 			<ConfigFiles Include="$(RootDir)\Web\config\BackOfficePowerScripts.config" />
 			<ScriptsFiles Include="$(RootDir)\Web\umbraco\plugins\BackOfficePowerScripts\scripts\*.js" />
 			<StylesFiles Include="$(RootDir)\Web\umbraco\plugins\BackOfficePowerScripts\styles\*.css" />
@@ -70,6 +69,7 @@
 		</ReadLinesFromFile>
 		<ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
 			WorkingDirectory="$(BuildDir)"
+			MinimumRequiredUmbracoVersion="4.6.1"
 			PackageVersion="$(PackageVersion)"
 			Readme="@(Readme->'%(Identity)', '%0a%0d')"
 			Files="@(ManifestFiles)" />
