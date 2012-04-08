@@ -1,12 +1,12 @@
-﻿using System.Web.Configuration;
-using ClientInjection.Attributes;
+﻿using System;
+using System.Web.Configuration;
+using Our.Umbraco.BackOfficePowerScripts.Attributes;
 using Our.Umbraco.BackOfficePowerScripts.Configuration;
 using Our.Umbraco.BackOfficePowerScripts.Configuration.Scripts;
 using Our.Umbraco.BackOfficePowerScripts.Configuration.Styles;
 using Our.Umbraco.BackOfficePowerScripts.Extensions;
 using umbraco.BusinessLogic;
 using umbraco.BusinessLogic.Utils;
-using System;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Events
 {
@@ -29,13 +29,13 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 		/// </summary>
 		private void LoadRegisteredControls()
 		{
-			var injector = ClientInjection.Application.Instance;
+			var injector = Application.Instance;
 
-			foreach (var type in TypeFinder.FindClassesOfType<ClientInjection.ClientControl>())
+			foreach (var type in TypeFinder.FindClassesOfType<ClientControl>())
 			{
 				try
 				{
-					var clientControl = Activator.CreateInstance(type) as ClientInjection.ClientControl;
+					var clientControl = Activator.CreateInstance(type) as ClientControl;
 					if (clientControl != null)
 					{
 						injector.AddClientControl(clientControl);
@@ -43,7 +43,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 				}
 				catch (Exception ex)
 				{
-					Log.Add(LogTypes.Error, -1, string.Concat("Error loading ClientInjection.ClientControl: ", ex));
+					Log.Add(LogTypes.Error, -1, string.Concat("Error loading Our.Umbraco.BackOfficePowerScripts.ClientControl: ", ex));
 					continue;
 				}
 			}
@@ -56,7 +56,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 		{
 			var config = WebConfigurationManager.OpenWebConfiguration("~/");
 			var section = config.GetSection(Common.ConfigName) as ConfigSection;
-			var injector = ClientInjection.Application.Instance;
+			var injector = Application.Instance;
 
 			foreach (ScriptElement script in section.Scripts)
 			{

@@ -37,17 +37,18 @@
     <DocumentationFile>bin\Release\Our.Umbraco.BackOfficePowerScripts.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="businesslogic">
-      <HintPath>..\_externals\businesslogic.dll</HintPath>
-    </Reference>
-    <Reference Include="ClientDependency.Core">
-      <HintPath>..\_externals\ClientDependency.Core.dll</HintPath>
+    <Reference Include="businesslogic, Version=1.0.4086.28097, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\_externals\umbraco-4.6.1\businesslogic.dll</HintPath>
     </Reference>
     <Reference Include="cms, Version=1.0.4089.21636, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\_externals\cms.dll</HintPath>
+      <HintPath>..\_externals\umbraco-4.6.1\cms.dll</HintPath>
     </Reference>
-    <Reference Include="interfaces">
-      <HintPath>..\_externals\interfaces.dll</HintPath>
+    <Reference Include="interfaces, Version=1.0.4085.20549, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\_externals\umbraco-4.6.1\interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -55,11 +56,16 @@
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web" />
-    <Reference Include="umbraco">
-      <HintPath>..\_externals\umbraco.dll</HintPath>
+    <Reference Include="umbraco, Version=1.0.4090.21631, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\_externals\umbraco-4.6.1\umbraco.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application.cs" />
+    <Compile Include="Attributes\ClientResourceAttribute.cs" />
+    <Compile Include="ClientControl.cs" />
+    <Compile Include="ClientResource.cs" />
+    <Compile Include="ClientResourceType.cs" />
     <Compile Include="Configuration\ConfigSection.cs" />
     <Compile Include="Configuration\Scripts\ScriptCollection.cs" />
     <Compile Include="Configuration\Scripts\ScriptElement.cs" />
@@ -67,10 +73,18 @@
     <Compile Include="Configuration\Styles\StyleElement.cs" />
     <Compile Include="Events\ApplicationEventsHandler.cs" />
     <Compile Include="Extensions\Common.cs" />
+    <Compile Include="Filters\InjectResources.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Interfaces\IClientControl.cs" />
+    <Compile Include="Interfaces\IClientResource.cs" />
+    <Compile Include="Interfaces\IClientTarget.cs" />
+    <Compile Include="Modules\RegisterControls.cs" />
+    <Compile Include="Modules\RegisterFilters.cs" />
     <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Web\config\BackOfficePowerScripts.config" />
   </ItemGroup>
   <ItemGroup>
@@ -78,12 +92,6 @@
     <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\custom-favicon.js" />
     <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\scripts\sections-href-fix.js" />
     <Content Include="Web\umbraco\plugins\BackOfficePowerScripts\styles\fancy-property-name.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ClientInjectionFramework\ClientInjection\ClientInjection.csproj">
-      <Project>{052E8911-C389-4B2C-A6E9-E8ED587C20A3}</Project>
-      <Name>ClientInjection</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
