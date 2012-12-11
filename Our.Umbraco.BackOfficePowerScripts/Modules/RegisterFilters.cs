@@ -26,15 +26,15 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		/// <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
 		public void Init(HttpApplication context)
 		{
-			context.PostReleaseRequestState += new EventHandler(this.context_PostReleaseRequestState);
+			context.PreRequestHandlerExecute += new EventHandler(this.context_PreRequestHandlerExecute);
 		}
 
 		/// <summary>
-		/// Handles the PostReleaseRequestState event of the context control.
+		/// Handles the PreRequestHandlerExecute event of the context control.
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-		private void context_PostReleaseRequestState(object sender, EventArgs e)
+		private void context_PreRequestHandlerExecute(object sender, EventArgs e)
 		{
 			var context = sender as HttpApplication;
 
