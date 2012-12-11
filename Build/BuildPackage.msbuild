@@ -16,7 +16,7 @@
 
 	<PropertyGroup>
 		<PackageProjectName>Our.Umbraco.BackOfficePowerScripts</PackageProjectName>
-		<RootDir>$(MSBuildProjectDirectory)\..\$(PackageProjectName)</RootDir>
+		<RootDir>$(MSBuildProjectDirectory)\..\Src\$(PackageProjectName)</RootDir>
 		<BuildDir>$(MSBuildProjectDirectory)\_temp</BuildDir>
 	</PropertyGroup>
 
@@ -43,7 +43,7 @@
 
 	<!-- COMPILE -->
 	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-		<MSBuild Projects="$(RootDir)\..\$(PackageProjectName).sln" Properties="Configuration=Release" />
+		<MSBuild Projects="$(RootDir)\..\..\$(PackageProjectName).sln" Properties="Configuration=Release" />
 	</Target>
 
 	<!-- PREPAIRE FILES -->
