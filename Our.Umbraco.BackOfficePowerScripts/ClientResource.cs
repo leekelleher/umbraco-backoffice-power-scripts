@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using ClientDependency.Core;
 using Our.Umbraco.BackOfficePowerScripts.Interfaces;
 
 namespace Our.Umbraco.BackOfficePowerScripts
@@ -34,7 +35,7 @@ namespace Our.Umbraco.BackOfficePowerScripts
 		/// <param name="priority">The priority.</param>
 		/// <param name="targets">The targets.</param>
 		/// <param name="type">The type.</param>
-		public ClientResource(string path, int priority, string targets, ClientResourceType type)
+		public ClientResource(string path, int priority, string targets, ClientDependencyType type)
 		{
 			this.Path = path;
 			this.Priority = priority;
@@ -61,10 +62,10 @@ namespace Our.Umbraco.BackOfficePowerScripts
 		public string Targets { get; set; }
 
 		/// <summary>
-		/// Gets or sets the <see cref="ClientResource"/> type.
+		/// Gets or sets the <see cref="ClientDependency.Core.ClientDependencyType"/> type.
 		/// </summary>
 		/// <value>The type.</value>
-		public ClientResourceType Type { get; set; }
+		public ClientDependencyType Type { get; set; }
 
 		/// <summary>
 		/// Returns a <see cref="System.String"/> that represents this instance.
@@ -78,10 +79,10 @@ namespace Our.Umbraco.BackOfficePowerScripts
 
 			switch (this.Type)
 			{
-				case ClientResourceType.Css:
+				case ClientDependencyType.Css:
 					return string.Format("<link rel=\"stylesheet\" type=\"text/css\" href=\"{0}\"/>", path);
 
-				case ClientResourceType.JavaScript:
+				case ClientDependencyType.Javascript:
 					return string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>", path);
 
 				default:

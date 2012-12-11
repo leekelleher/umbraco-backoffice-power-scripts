@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mime;
-using System.Text.RegularExpressions;
 using System.Web;
-using Our.Umbraco.BackOfficePowerScripts.Filters;
-using Our.Umbraco.BackOfficePowerScripts.Interfaces;
+using System.Web.UI;
+using umbraco.uicontrols;
+using ClientDependency.Core;
+using umbraco.IO;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Modules
 {
 	/// <summary>
-	/// HttpModule for registering the Response.Filters.
+	/// HttpModule for registering the resources (on their targets)
 	/// </summary>
-	public sealed class RegisterFilters : IHttpModule
+	public sealed class RegisterClientResources : IHttpModule
 	{
 		/// <summary>
 		/// Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
@@ -26,7 +28,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		/// <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
 		public void Init(HttpApplication context)
 		{
-			context.PreRequestHandlerExecute += new EventHandler(this.context_PreRequestHandlerExecute);
+			context.PreRequestHandlerExecute += new EventHandler(this.RegisterTargetClientResources);
 		}
 
 		/// <summary>
@@ -34,18 +36,30 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-		private void context_PreRequestHandlerExecute(object sender, EventArgs e)
+		private void RegisterTargetClientResources(object sender, EventArgs e)
 		{
 			var context = sender as HttpApplication;
 
 			if (string.Equals(context.Response.ContentType, MediaTypeNames.Text.Html, StringComparison.OrdinalIgnoreCase))
 			{
 				var currentExecutionFilePath = context.Request.CurrentExecutionFilePath;
+				var page = context.Context.Handler as Page;
 				var registeredClientResources = this.GetRegisteredClientResources(currentExecutionFilePath);
 
-				if (registeredClientResources.Count > 0)
+				if (page != null && registeredClientResources.Count > 0)
 				{
-					context.Response.Filter = new InjectResources(context.Response.Filter, registeredClientResources);
+					page.Load += (s2, e2) =>
+					{
+						bool created;
+						var loader = UmbracoClientDependencyLoader.TryCreate(page, out created);
+						if (loader != null)
+						{
+							foreach (var clientResource in registeredClientResources)
+							{
+								loader.RegisterDependency(clientResource.Priority, IOHelper.ResolveUrl(clientResource.Path), clientResource.Type);
+							}
+						}
+					};
 				}
 			}
 		}

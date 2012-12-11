@@ -1,4 +1,6 @@
-﻿namespace Our.Umbraco.BackOfficePowerScripts.Interfaces
+﻿using ClientDependency.Core;
+
+namespace Our.Umbraco.BackOfficePowerScripts.Interfaces
 {
 	/// <summary>
 	/// Interface for a ClientResource item.
@@ -18,9 +20,9 @@
 		int Priority { get; set; }
 
 		/// <summary>
-		/// Gets or sets the <see cref="ClientResource"/> type.
+		/// Gets or sets the <see cref="ClientDependency.Core.ClientDependencyType"/> type.
 		/// </summary>
 		/// <value>The type.</value>
-		ClientResourceType Type { get; set; }
+		ClientDependencyType Type { get; set; }
 	}
 }

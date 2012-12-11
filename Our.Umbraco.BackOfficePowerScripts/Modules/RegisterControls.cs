@@ -40,17 +40,14 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 			if (string.Equals(context.Response.ContentType, MediaTypeNames.Text.Html, StringComparison.OrdinalIgnoreCase))
 			{
 				var currentExecutionFilePath = context.Request.CurrentExecutionFilePath;
+				var page = context.Context.Handler as Page;
 				var registeredControls = this.GetRegisteredControls(currentExecutionFilePath);
 
-				if (registeredControls.Count > 0)
+				if (page != null && registeredControls.Count > 0)
 				{
 					foreach (var registeredControl in registeredControls)
 					{
-						var page = context.Context.Handler as Page;
-						if (page != null)
-						{
-							registeredControl.InterceptPage(page);
-						}
+						registeredControl.InterceptPage(page);
 					}
 				}
 			}

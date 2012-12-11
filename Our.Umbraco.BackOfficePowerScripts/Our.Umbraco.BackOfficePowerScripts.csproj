@@ -40,8 +40,14 @@
     <Reference Include="businesslogic, Version=1.0.4086.28097, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\_externals\umbraco-4.6.1\businesslogic.dll</HintPath>
     </Reference>
+    <Reference Include="ClientDependency.Core, Version=1.0.2.37148, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Lib\umbraco-4.6.1\ClientDependency.Core.dll</HintPath>
+    </Reference>
     <Reference Include="cms, Version=1.0.4089.21636, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\_externals\umbraco-4.6.1\cms.dll</HintPath>
+    </Reference>
+    <Reference Include="controls">
+      <HintPath>..\Lib\umbraco-4.6.1\controls.dll</HintPath>
     </Reference>
     <Reference Include="interfaces, Version=1.0.4085.20549, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\_externals\umbraco-4.6.1\interfaces.dll</HintPath>
@@ -65,7 +71,6 @@
     <Compile Include="Attributes\ClientResourceAttribute.cs" />
     <Compile Include="ClientControl.cs" />
     <Compile Include="ClientResource.cs" />
-    <Compile Include="ClientResourceType.cs" />
     <Compile Include="Configuration\ConfigSection.cs" />
     <Compile Include="Configuration\Scripts\ScriptCollection.cs" />
     <Compile Include="Configuration\Scripts\ScriptElement.cs" />
@@ -73,15 +78,15 @@
     <Compile Include="Configuration\Styles\StyleElement.cs" />
     <Compile Include="Events\ApplicationEventsHandler.cs" />
     <Compile Include="Extensions\Common.cs" />
-    <Compile Include="Filters\InjectResources.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interfaces\IClientControl.cs" />
     <Compile Include="Interfaces\IClientResource.cs" />
     <Compile Include="Interfaces\IClientTarget.cs" />
+    <Compile Include="Modules\RegisterClientResources.cs" />
     <Compile Include="Modules\RegisterControls.cs" />
-    <Compile Include="Modules\RegisterFilters.cs" />
     <Compile Include="PackageActions\AddConfigSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

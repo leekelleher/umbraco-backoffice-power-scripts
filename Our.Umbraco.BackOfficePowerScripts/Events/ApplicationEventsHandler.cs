@@ -29,7 +29,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 		/// </summary>
 		private void LoadRegisteredControls()
 		{
-			var injector = Application.Instance;
+			var application = Application.Instance;
 
 			foreach (var type in TypeFinder.FindClassesOfType<ClientControl>())
 			{
@@ -38,7 +38,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 					var clientControl = Activator.CreateInstance(type) as ClientControl;
 					if (clientControl != null)
 					{
-						injector.AddClientControl(clientControl);
+						application.AddClientControl(clientControl);
 					}
 				}
 				catch (Exception ex)
@@ -56,23 +56,23 @@ namespace Our.Umbraco.BackOfficePowerScripts.Events
 		{
 			var config = WebConfigurationManager.OpenWebConfiguration("~/");
 			var section = config.GetSection(Common.ConfigName) as ConfigSection;
-			var injector = Application.Instance;
+			var application = Application.Instance;
 
 			foreach (ScriptElement script in section.Scripts)
 			{
-				injector.AddJavaScript(script.Path, 100, script.Targets);
+				application.AddJavaScript(script.Path, script.Targets, 100);
 			}
 
 			foreach (StyleElement style in section.Styles)
 			{
-				injector.AddCss(style.Path, 100, style.Targets);
+				application.AddCss(style.Path, style.Targets, 100);
 			}
 
 			foreach (var type in TypeFinder.FindClassesMarkedWithAttribute(typeof(ClientResourceAttribute)))
 			{
 				foreach (ClientResourceAttribute attribute in type.GetCustomAttributes(typeof(ClientResourceAttribute), false))
 				{
-					injector.AddClientResource(attribute.ClientResource);
+					application.AddClientResource(attribute.ClientResource);
 				}
 			}
 		}
