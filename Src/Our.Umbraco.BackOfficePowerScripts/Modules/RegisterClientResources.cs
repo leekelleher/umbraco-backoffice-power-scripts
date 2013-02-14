@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mime;
 using System.Web;
 using System.Web.UI;
-using umbraco.uicontrols;
-using ClientDependency.Core;
+using umbraco.BusinessLogic;
 using umbraco.IO;
+using umbraco.uicontrols;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Modules
 {
@@ -40,24 +39,31 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		{
 			var context = sender as HttpApplication;
 
-			if (string.Equals(context.Response.ContentType, MediaTypeNames.Text.Html, StringComparison.OrdinalIgnoreCase))
+			if (string.Equals(context.Response.ContentType, MediaTypeNames.Text.Html, StringComparison.OrdinalIgnoreCase) && context.Context.Handler is Page)
 			{
-				var currentExecutionFilePath = context.Request.CurrentExecutionFilePath;
 				var page = context.Context.Handler as Page;
+				var currentExecutionFilePath = context.Request.CurrentExecutionFilePath;
 				var registeredClientResources = this.GetRegisteredClientResources(currentExecutionFilePath);
 
-				if (page != null && registeredClientResources.Count > 0)
+				if (page != null && registeredClientResources != null && registeredClientResources.Count > 0)
 				{
 					page.Load += (s2, e2) =>
 					{
-						bool created;
-						var loader = UmbracoClientDependencyLoader.TryCreate(page, out created);
-						if (loader != null)
+						try
 						{
-							foreach (var clientResource in registeredClientResources)
+							bool created;
+							var loader = UmbracoClientDependencyLoader.TryCreate(page, out created);
+							if (loader != null)
 							{
-								loader.RegisterDependency(clientResource.Priority, IOHelper.ResolveUrl(clientResource.Path), clientResource.Type);
+								foreach (var clientResource in registeredClientResources)
+								{
+									loader.RegisterDependency(clientResource.Priority, IOHelper.ResolveUrl(clientResource.Path), clientResource.Type);
+								}
 							}
+						}
+						catch (Exception ex)
+						{
+							Log.Add(LogTypes.Error, -1, string.Concat("Error loading Our.Umbraco.BackOfficePowerScripts.Modules.RegisterClientResources: ", ex));
 						}
 					};
 				}
@@ -71,7 +77,12 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		/// <returns>Returns a list of registered ClientResource items.</returns>
 		private List<ClientResource> GetRegisteredClientResources(string path)
 		{
-			return Helper.GetRegisteredTargets<ClientResource>(path, Application.Instance.ClientResources);
+			if (Application.Instance.ClientResources.Count > 0)
+			{
+				return Helper.GetRegisteredTargets<ClientResource>(path, Application.Instance.ClientResources);
+			}
+
+			return null;
 		}
 	}
 }

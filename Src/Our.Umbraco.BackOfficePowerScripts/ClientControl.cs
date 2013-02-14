@@ -24,9 +24,9 @@ namespace Our.Umbraco.BackOfficePowerScripts
 		public virtual string Targets { get; set; }
 
 		/// <summary>
-		/// Intercepts the page.
+		/// Processes the page.
 		/// </summary>
 		/// <param name="page">The page.</param>
-		public abstract void InterceptPage(Page page);
+		public abstract void ProcessPage(Page page);
 	}
 }
