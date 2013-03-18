@@ -58,28 +58,25 @@ namespace Our.Umbraco.BackOfficePowerScripts
 				foreach (var clientTarget in clientTargets)
 				{
 					// check that the targets is not empty
-					if (!string.IsNullOrWhiteSpace(clientTarget.Targets))
+					if (string.IsNullOrWhiteSpace(clientTarget.Targets))
+						continue;
+
+					// split the targets
+					var targets = clientTarget.Targets.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+					// loop through each target (regex pattern)
+					foreach (var pattern in targets)
 					{
-						// split the targets
-						var targets = clientTarget.Targets.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+						// check that the target (regex pattern) is not empty
+						if (string.IsNullOrWhiteSpace(pattern))
+							continue;
 
-						// loop through each target (regex pattern)
-						foreach (var pattern in targets)
-						{
-							// check that the target (regex pattern) is not empty
-							if (!string.IsNullOrWhiteSpace(pattern))
-							{
-								// apply the regex pattern to the current path
-								var match = Regex.Match(path, pattern, RegexOptions.IgnoreCase);
+						// apply the regex pattern to the current path
+						var match = Regex.Match(path, pattern, RegexOptions.IgnoreCase);
 
-								// check if regex match was a success...
-								if (match.Success)
-								{
-									// ... add the client target to the list!
-									registeredTargets.Add(clientTarget);
-								}
-							}
-						}
+						// check if regex match was a success, add the client target to the list!
+						if (match.Success)
+							registeredTargets.Add(clientTarget);
 					}
 				}
 			}
