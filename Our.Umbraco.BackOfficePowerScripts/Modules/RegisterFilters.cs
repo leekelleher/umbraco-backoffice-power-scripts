@@ -40,7 +40,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 
 			if (string.Equals(context.Response.ContentType, MediaTypeNames.Text.Html, StringComparison.OrdinalIgnoreCase))
 			{
-				var currentExecutionFilePath = context.Request.CurrentExecutionFilePath;
+                var currentExecutionFilePath = context.Request.RawUrl;
 				var registeredClientResources = this.GetRegisteredClientResources(currentExecutionFilePath);
 
 				if (registeredClientResources.Count > 0)
