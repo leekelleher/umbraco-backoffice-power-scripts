@@ -1,4 +1,5 @@
 ﻿using System;
+using ClientDependency.Core;
 using Our.Umbraco.BackOfficePowerScripts.Interfaces;
 
 namespace Our.Umbraco.BackOfficePowerScripts.Attributes
@@ -25,7 +26,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Attributes
 		/// <param name="priority">The priority.</param>
 		/// <param name="targets">The targets.</param>
 		/// <param name="type">The type.</param>
-		public ClientResourceAttribute(string path, int priority, string targets, ClientResourceType type)
+		public ClientResourceAttribute(string path, int priority, string targets, ClientDependencyType type)
 		{
 			this.ClientResource = new ClientResource(path, priority, targets, type);
 		}
@@ -46,7 +47,7 @@ namespace Our.Umbraco.BackOfficePowerScripts.Attributes
 		/// Gets or sets the type of the client resource.
 		/// </summary>
 		/// <value>The type of the client resource.</value>
-		public ClientResourceType Type { get; set; }
+		public ClientDependencyType Type { get; set; }
 
 		/// <summary>
 		/// Gets or sets the priority.

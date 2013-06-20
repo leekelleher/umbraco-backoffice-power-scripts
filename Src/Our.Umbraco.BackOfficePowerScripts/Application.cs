@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using Our.Umbraco.BackOfficePowerScripts.Modules;
+using ClientDependency.Core;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Our.Umbraco.BackOfficePowerScripts.Modules;
 
 namespace Our.Umbraco.BackOfficePowerScripts
 {
@@ -58,12 +59,10 @@ namespace Our.Umbraco.BackOfficePowerScripts
 		public static void RegisterModules()
 		{
 			if (modulesRegistered)
-			{
 				return;
-			}
 
+			DynamicModuleUtility.RegisterModule(typeof(RegisterClientResources));
 			DynamicModuleUtility.RegisterModule(typeof(RegisterControls));
-			DynamicModuleUtility.RegisterModule(typeof(RegisterFilters));
 
 			modulesRegistered = true;
 		}
@@ -93,7 +92,7 @@ namespace Our.Umbraco.BackOfficePowerScripts
 		/// <param name="type">The type.</param>
 		/// <param name="priority">The priority.</param>
 		/// <param name="targets">The targets.</param>
-		public void AddClientResource(string path, ClientResourceType type, int priority = 100, string targets = "")
+		public void AddClientResource(string path, ClientDependencyType type, string targets = "", int priority = 100)
 		{
 			this.ClientResources.Add(new ClientResource(path, priority, targets, type));
 		}
@@ -104,9 +103,9 @@ namespace Our.Umbraco.BackOfficePowerScripts
 		/// <param name="path">The path.</param>
 		/// <param name="priority">The priority.</param>
 		/// <param name="targets">The targets.</param>
-		public void AddCss(string path, int priority = 100, string targets = "")
+		public void AddCss(string path, string targets = "", int priority = 100)
 		{
-			this.AddClientResource(path, ClientResourceType.Css, priority, targets);
+			this.AddClientResource(path, ClientDependencyType.Css, targets, priority);
 		}
 
 		/// <summary>
@@ -115,9 +114,9 @@ namespace Our.Umbraco.BackOfficePowerScripts
 		/// <param name="path">The path.</param>
 		/// <param name="priority">The priority.</param>
 		/// <param name="targets">The targets.</param>
-		public void AddJavaScript(string path, int priority = 100, string targets = "")
+		public void AddJavaScript(string path, string targets = "", int priority = 100)
 		{
-			this.AddClientResource(path, ClientResourceType.JavaScript, priority, targets);
+			this.AddClientResource(path, ClientDependencyType.Javascript, targets, priority);
 		}
 	}
 }

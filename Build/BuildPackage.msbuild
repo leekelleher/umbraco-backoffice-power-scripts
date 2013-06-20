@@ -7,12 +7,16 @@
 
 	<!-- PROPERTIES -->
 	<PropertyGroup>
-		<PackageVersion>0.1.4</PackageVersion>
-		<PackageProjectName>Our.Umbraco.BackOfficePowerScripts</PackageProjectName>
+		<VersionMajor>0</VersionMajor>
+		<VersionMinor>3</VersionMinor>
+		<VersionPatch>0</VersionPatch>
+		<VersionSuffix></VersionSuffix>
+		<UmbracoVersion>4.7.0</UmbracoVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<RootDir>$(MSBuildProjectDirectory)\..\$(PackageProjectName)</RootDir>
+		<PackageProjectName>Our.Umbraco.BackOfficePowerScripts</PackageProjectName>
+		<RootDir>$(MSBuildProjectDirectory)\..\Src\$(PackageProjectName)</RootDir>
 		<BuildDir>$(MSBuildProjectDirectory)\_temp</BuildDir>
 	</PropertyGroup>
 
@@ -26,21 +30,20 @@
 
 	<!-- UPDATE ASSEMBLEY VERSION -->
 	<Target Name="UpdateAssemblyInfo" DependsOnTargets="Clean">
-		<FileUpdate
-			Encoding="ASCII"
-			Files="$(RootDir)\Properties\AssemblyInfo.cs"
-			Regex="AssemblyVersion\(&quot;.*&quot;\)\]"
-			ReplacementText="AssemblyVersion(&quot;$(PackageVersion).*&quot;)]" />
-		<FileUpdate
-			Encoding="ASCII"
-			Files="$(RootDir)\Properties\AssemblyInfo.cs"
-			Regex="AssemblyFileVersion\(&quot;.*&quot;\)\]"
-			ReplacementText="AssemblyFileVersion(&quot;$(PackageVersion).*&quot;)]" />
+		<Version Major="$(VersionMajor)" Minor="$(VersionMinor)" BuildType="Automatic" RevisionType="Automatic" StartDate="10/04/2011">
+			<Output TaskParameter="Build" PropertyName="Build" />
+			<Output TaskParameter="Revision" PropertyName="Revision" />
+		</Version>
+		<AssemblyInfo CodeLanguage="CS"
+			OutputFile="$(RootDir)\Properties\VersionInfo.cs"
+			AssemblyVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)"
+			AssemblyFileVersion="$(VersionMajor).$(VersionMinor).$(Build).$(Revision)"
+			AssemblyInformationalVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"/>
 	</Target>
 
 	<!-- COMPILE -->
 	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-		<MSBuild Projects="$(RootDir)\..\$(PackageProjectName).sln" Properties="Configuration=Release" />
+		<MSBuild Projects="$(RootDir)\..\..\$(PackageProjectName).sln" Properties="Configuration=Release" />
 	</Target>
 
 	<!-- PREPAIRE FILES -->
@@ -64,14 +67,11 @@
 		<ItemGroup>
 			<ManifestFiles Include="$(BuildDir)\**\*" Exclude="$(BuildDir)\package.xml" />
 		</ItemGroup>
-		<ReadLinesFromFile File="$(MSBuildProjectDirectory)\readme.txt">
-			<Output TaskParameter="Lines" ItemName="Readme" />
-		</ReadLinesFromFile>
 		<ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
 			WorkingDirectory="$(BuildDir)"
-			MinimumRequiredUmbracoVersion="4.6.1"
-			PackageVersion="$(PackageVersion)"
-			Readme="@(Readme->'%(Identity)', '%0a%0d')"
+			MinimumRequiredUmbracoVersion="$(UmbracoVersion)"
+			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
+			Readme="$([System.IO.File]::ReadAllText(readme.txt))"
 			Files="@(ManifestFiles)" />
 	</Target>
 
@@ -81,9 +81,9 @@
 			<PackageFiles Include="$(BuildDir)\**\*.*" />
 		</ItemGroup>
 		<Package ManifestFile="$(BuildDir)\package.xml"
-		   WorkingDirectory="$(BuildDir)"
-		   OutputDirectory="$(MSBuildProjectDirectory)"
-		   Files="@(PackageFiles)" />
+			WorkingDirectory="$(BuildDir)"
+			OutputDirectory="$(MSBuildProjectDirectory)"
+			Files="@(PackageFiles)" />
 		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
 	</Target>
 

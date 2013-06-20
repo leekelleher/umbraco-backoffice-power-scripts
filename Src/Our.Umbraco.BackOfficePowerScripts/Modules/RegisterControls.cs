@@ -37,20 +37,17 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		{
 			var context = sender as HttpApplication;
 
-			if (string.Equals(context.Response.ContentType, MediaTypeNames.Text.Html, StringComparison.OrdinalIgnoreCase))
+			if (string.Equals(context.Response.ContentType, MediaTypeNames.Text.Html, StringComparison.OrdinalIgnoreCase) && context.Context.Handler is Page)
 			{
-				var currentExecutionFilePath = context.Request.CurrentExecutionFilePath;
+				var page = context.Context.Handler as Page;
+				var currentExecutionFilePath = context.Request.RawUrl;
 				var registeredControls = this.GetRegisteredControls(currentExecutionFilePath);
 
-				if (registeredControls.Count > 0)
+				if (page != null && registeredControls != null && registeredControls.Count > 0)
 				{
 					foreach (var registeredControl in registeredControls)
 					{
-						var page = context.Context.Handler as Page;
-						if (page != null)
-						{
-							registeredControl.InterceptPage(page);
-						}
+						registeredControl.ProcessPage(page);
 					}
 				}
 			}
@@ -63,7 +60,12 @@ namespace Our.Umbraco.BackOfficePowerScripts.Modules
 		/// <returns>Returns a list of registered client controls for the specified path.</returns>
 		private List<ClientControl> GetRegisteredControls(string path)
 		{
-			return Helper.GetRegisteredTargets<ClientControl>(path, Application.Instance.ClientControls);
+			if (Application.Instance.ClientControls.Count > 0)
+			{
+				return Helper.GetRegisteredTargets<ClientControl>(path, Application.Instance.ClientControls);
+			}
+
+			return null;
 		}
 	}
 }
